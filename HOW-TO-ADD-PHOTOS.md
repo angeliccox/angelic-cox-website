@@ -11,9 +11,7 @@ Every grey striped box on your site is a placeholder. This guide shows you how t
 | "Based in SF Bay Area" image ✅ | Homepage, right side: your handwriting | Trimmed close, about 1000 px wide | `images/base-in.png` |
 | "Reach out!" image ✅ | About page, under your intro: your handwriting | Trimmed close, about 760 px wide | `images/reach-out.png` |
 | About photo ✅ | About page, next to your intro (black & white) | Any shape, shown whole; about 1600 px wide | `images/about-photo.png` |
-| Work hover photos | Work page: fades in behind the list when someone points at a category | Full screen | `js/site.js` |
-| Project photos/videos | Each category page, and the homepage under the first screen | Your photo's own shape | `js/site.js` |
-| Press clippings | Press page (not in the menu right now) | Wide, 4:3 | `press.html` |
+| Project photos/videos | The homepage, under the first screen | Your photo's own shape | `js/site.js` |
 | Instagram posts & slide decks | A project's own page (opens when someone clicks the project) | — | `js/site.js` + `files/` folder |
 | Project write-up pictures | A project's write-up page: slideshow and sections | Any shape | the write-up's own file, e.g. `digital-marketer-project-1.html` |
 
@@ -111,27 +109,20 @@ Your handwriting is in as `images/reach-out.png`, under your intro and above the
 
 **To swap in new handwriting later:** use a PNG with a see-through background, trimmed close around the letters (Image → Trim… → Transparent Pixels), about **760 px wide**. Save it over `images/reach-out.png`.
 
-### 4d. Work page hover photos (`js/site.js`)
+### 4d. Categories (`js/site.js`)
 
-On the Work page, pointing at a category name fades that category's photo in behind the list.
-Search for `categories:`. Each category has an `image: ""`. Type the file name between the quotes:
-
-```js
-{ slug: "digital-marketer", title: "Digital Marketer", image: "images/work-digital-marketing.jpg", projects: [
-```
-
-While you're here, you can rename your categories (the first one is already "Digital Marketer"):
-- **`title`** is the name people see, e.g. `"Styling"`. It's also the big colored title on that category's page.
+Search for `categories:`. You can rename your categories there (the first one is "Digital Marketer"):
+- **`title`** is the name people see in the Work dropdown and the footer, e.g. `"Styling"`.
 - **`slug`** is the short web address name: lowercase with dashes, e.g. `"styling"`.
   If you change a slug, change the matching `category:` in the `roles` list above it too, so the homepage words still lead to the right projects.
-- **Contact form:** the "Reason for Inquiry" checkboxes in `about.html` list the categories by name too. Search for `name="reason"` and rename them to match (change both the `value="…"` and the words after it).
-- **`color`** (optional) picks the category's color, e.g. `color: "#be185d",`. It's used for the big title on its page and on the homepage, and for the color its name turns when someone points at it. Without it, categories take turns being orange, pink, blue, green and purple. Pick a dark enough color to read easily on white; [webaim.org/resources/contrastchecker](https://webaim.org/resources/contrastchecker/) tells you (aim for 4.5 : 1 or higher).
+- **Contact form:** the "Reason for Inquiry" checkboxes in `about.html` list the kinds of work too. Search for `name="reason[]"` and rename them to match (change both the `value="…"` and the words after it).
+- **`color`** (optional) picks the category's color, e.g. `color: "#be185d",`. It's used for its big title on the homepage, and for the color its projects turn when someone points at them. Without it, categories take turns being orange, pink, blue, green and purple. Pick a dark enough color to read easily on white; [webaim.org/resources/contrastchecker](https://webaim.org/resources/contrastchecker/) tells you (aim for 4.5 : 1 or higher).
 
 ### 4e. Project photos and videos (`js/site.js`)
 
-Each category page shows its projects under the big title, in columns, each photo or video at its own shape, with the project name underneath.
+Each category's section on the homepage shows its projects under its big title.
 
-Every category comes with **8 empty project slots**, one line each, matching the 8 boxes you see on its page. Fill in the blanks between the quotes:
+Every category comes with empty project slots, one line each. Fill in the blanks between the quotes:
 
 ```js
 { title: "", detail: "", image: "", instagram: "", slides: "", page: "" },
@@ -149,18 +140,7 @@ becomes, for example:
 - **`instagram`** and **`slides`** (optional) show on the project's own page; see 4g.
 - **`page`** (optional) is a full write-up page for the project, with a slideshow and sections of writing; see 4h. When it's filled in, clicking the project opens the write-up.
 - Clicking a project opens **its own page**: the name and year on the left, and on the right whatever you've linked. With nothing linked, the photo shows big there.
-- **Fewer than 8 projects?** Delete the lines you don't need, so empty boxes don't show on your live site. **More than 8?** Copy a line and paste it below; keep the comma at the end of each line.
-
-### 4f. Press clippings (`press.html`)
-
-The Press page isn't in the menu right now, but it still works if you link to it. Each article is a block that starts with `<li class="press-item">` and ends with `</li>`. In each block:
-
-1. Replace the line that starts with `<div class="ph">` with:
-   ```html
-          <img src="images/press-1.jpg" alt="">
-   ```
-2. Change **Publication Name**, the **headline** and **Month Year**.
-3. Put the article's web address in place of the `#` in `<a class="read" href="#">`. Keep the quotes.
+- **Need more slots?** Copy a line and paste it below; keep the comma at the end of each line. Empty lines don't show on the site.
 
 ### 4g. Project pages: link an Instagram post and/or slides
 
@@ -170,7 +150,7 @@ Every project slot has its own page. While a slot is empty, its page shows two p
 { title: "Spring Lookbook", detail: "2026", image: "images/lookbook-1.jpg", instagram: "https://www.instagram.com/p/ABC123xyz/", slides: "files/spring-lookbook.pdf", page: "" },
 ```
 
-Leave either one as `""` if you don't need it. The `image` is still the picture people click on the category page.
+Leave either one as `""` if you don't need it. The `image` is still the picture people click on the homepage.
 
 **Adding an Instagram post**
 1. Open the post on Instagram (in a browser or the app).
@@ -182,7 +162,7 @@ Leave either one as `""` if you don't need it. The `image` is still the picture 
 **Adding slides (PowerPoint or PDF)**
 
 Any project in any category can have slides.
-1. **Make a cover image** for the category page. In PowerPoint, click your first slide, then **File → Export → Change File Type → PNG** and choose **Just This One**. Save it into `images/`, e.g. `images/deck-cover.png`.
+1. **Make a cover image** for the homepage. In PowerPoint, click your first slide, then **File → Export → Change File Type → PNG** and choose **Just This One**. Save it into `images/`, e.g. `images/deck-cover.png`.
 2. **Pick PDF or PowerPoint for the deck itself.**
    - **PDF (recommended):** **File → Export → Create PDF/XPS**. The slides show right on the project page in every browser, and look exactly like your deck.
    - **PowerPoint (`.pptx`):** works too, but only once your site is online. Microsoft's free viewer then shows the slides on the page. On your own computer you'll see a grey box with a link instead.
@@ -210,7 +190,7 @@ The first Digital Marketer project, the **Chewy Paid Media Performance Report**,
 6. **Instagram post:** paste a public post's link between the quotes in `data-instagram=""`.
 7. **Slides:** put a PDF or PowerPoint in `files/` and type its name between the quotes in `data-slides=""`, e.g. `data-slides="files/my-deck.pdf"`.
 8. **Don't need a part?** Delete it. Each part has a note above it in the file saying where it starts and ends.
-9. **On the category page,** the project's tile still uses its line in `js/site.js`: fill in its `title` (shown under the tile) and `image` (the picture people click). Projects go one after another down the page, in the order of the lines (move a line up or down to reorder). Each shows its name, then its skills: each word in `tags` (e.g. `tags: ["Excel", "Instagram analytics"]`) shows as a little round badge. Then comes its picture, at its own shape with nothing cropped, with rounded corners. `detail` (e.g. "Role · Type · Year") shows on the project's own page; `summary` is kept for your notes but not shown right now.
+9. **On the homepage,** the project still uses its line in `js/site.js`: fill in its `title` (shown under the tile) and `image` (the picture people click). Projects go one after another down the page, in the order of the lines (move a line up or down to reorder). Each shows its name, then its skills: each word in `tags` (e.g. `tags: ["Excel", "Instagram analytics"]`) shows as a little round badge. Then comes its picture, at its own shape with nothing cropped, with rounded corners. `detail` (e.g. "Role · Type · Year") shows on the project's own page; `summary` is kept for your notes but not shown right now.
 
 **To add another write-up:** copy `digital-marketer-project-1.html`, rename the copy (lowercase, dashes, e.g. `digital-marketer-project-2.html`), then type that name after `page:` on the project's line in `js/site.js`. For a project in a different category, also change `data-category="digital-marketer"` near the top of the copied file to that category's `slug`, so its "← all …" links go back to the right page.
 

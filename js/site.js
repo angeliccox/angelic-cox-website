@@ -22,9 +22,8 @@ const SITE = {
     { label: "Digital Artist", category: "digital-artist" },
   ],
 
-  // Work categories: they show in the Work dropdown and the Work page list,
-  // and each gets its own page at category.html?c=<slug>.
-  // `image` fades in behind the Work page list when someone hovers that category.
+  // Work categories: they show in the Work dropdown and the footer, and each gets a section on the homepage
+  // (when a role in the list above uses its slug). `image` isn't used right now.
   // Add `color: "#ff0000"` to pick its color (big page title + hover color);
   // otherwise they use orange, pink, blue, green, purple in turn.
   // Pick a dark enough color to read easily on white.
@@ -150,7 +149,6 @@ const SITE = {
   const CAT_COLORS = ["#c2410c", "#be185d", "#0062b1", "#047857", "#8b278c"];
   const catColor = (c) => c.color || CAT_COLORS[SITE.categories.indexOf(c) % CAT_COLORS.length];
   const page = document.body.dataset.page;
-  const catUrl = (c) => `category.html?c=${encodeURIComponent(c.slug)}`;
   const findCat = (slug) => SITE.categories.find((c) => c.slug === slug);
   // Each project gets its own page: project.html?c=<category slug>&p=<project name as a slug>
   const slugify = (s) => String(s || "").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
@@ -159,7 +157,7 @@ const SITE = {
   const projectUrl = (c, p, i) =>
     p.page || `project.html?c=${encodeURIComponent(c.slug)}&p=${encodeURIComponent(projectId(p, i))}`;
   const current = (id) =>
-    page === id || (id === "work" && ["category", "project", "write-up"].includes(page)) ? 'aria-current="page"' : "";
+    page === id || (id === "work" && ["project", "write-up"].includes(page)) ? 'aria-current="page"' : "";
 
   function logo() {
     return SITE.logo
@@ -262,15 +260,13 @@ const SITE = {
     (r, i, all) => findCat(r.category) && all.findIndex((x) => x.category === r.category) === i
   );
   const onHome = (slug) => homeRoles.some((r) => r.category === slug);
-  // The categories in the menu's Work dropdown (and the footer's) lead down the homepage to the projects,
-  // instead of to a separate page. On the homepage itself they just glide down.
-  // "work" is the top of the projects; a category goes to its own section (or its own page if it has no section).
+  // The categories in the menu's Work dropdown (and the footer's) lead down the homepage to their projects.
+  // On the homepage itself they just glide down. "work" is the top of the projects; a category without
+  // a homepage section leads there too.
   const homeLink = (id) => `${page === "home" ? "" : "index.html"}#${encodeURIComponent(id)}`;
-  const workUrl = (c) => (onHome(c.slug) ? homeLink(c.slug) : catUrl(c));
-  // Where "go back" leads from a project: its section on the homepage,
-  // or its category page if the visitor came from there (or it has no homepage section).
-  const backUrl = (c) =>
-    onHome(c.slug) && !/category\.html/.test(document.referrer) ? `index.html#${encodeURIComponent(c.slug)}` : catUrl(c);
+  const workUrl = (c) => homeLink(onHome(c.slug) ? c.slug : "work");
+  // Where "go back" leads from a project: its section on the homepage
+  const backUrl = (c) => `index.html#${encodeURIComponent(onHome(c.slug) ? c.slug : "work")}`;
 
   // Instagram's own embed code; Instagram's script turns it into the post (it must be a public post).
   // With captioned false, the post shows without its Instagram caption.
@@ -440,26 +436,6 @@ const SITE = {
       .join("");
   });
 
-  /* ---------- Work page: big list, hover shows the category image ---------- */
-  $$("[data-work-list]").forEach((ul) => {
-    ul.innerHTML = SITE.categories
-      .map((c) => `<li><a href="${catUrl(c)}" data-slug="${esc(c.slug)}" style="--c:${esc(catColor(c))}">${esc(c.title)}</a></li>`)
-      .join("");
-    const bg = $("[data-work-bg]");
-    if (!bg) return;
-    bg.innerHTML = SITE.categories
-      .filter((c) => c.image)
-      .map((c) => `<img src="${esc(c.image)}" alt="" data-slug="${esc(c.slug)}">`)
-      .join("");
-    const show = (slug) => $$("img", bg).forEach((img) => img.classList.toggle("on", img.dataset.slug === slug));
-    $$("a", ul).forEach((a) => {
-      a.addEventListener("mouseenter", () => show(a.dataset.slug));
-      a.addEventListener("focus", () => show(a.dataset.slug));
-      a.addEventListener("mouseleave", () => show(null));
-      a.addEventListener("blur", () => show(null));
-    });
-  });
-
   /* ---------- Homepage: each role's projects, under the first screen ---------- */
   // A big title in the role's color, then its projects (see projectFeed above; placeholders until it has some).
   $$("[data-home-work]").forEach((box) => {
@@ -527,50 +503,6 @@ const SITE = {
     solid();
     addEventListener("scroll", solid, { passive: true });
     addEventListener("resize", solid);
-  }
-
-  /* ---------- Category page ---------- */
-  if (page === "category") {
-    const slug = new URLSearchParams(location.search).get("c");
-    const idx = Math.max(0, SITE.categories.findIndex((c) => c.slug === slug));
-    const cat = SITE.categories[idx];
-    document.title = `${cat.title} | ${SITE.name}`;
-
-    // Huge title in the category's color, sized to fill the page width.
-    const title = $("[data-cat-title]");
-    title.textContent = cat.title;
-    title.parentElement.style.color = catColor(cat);
-    fitTitle(title);
-
-    const projects = cat.projects || [];
-    const grid = $("[data-projects]");
-    document.body.style.setProperty("--c", catColor(cat));
-
-    if (filledProjects(cat).length) {
-      // Filled-in projects: one after another down the page (see projectFeed above).
-      grid.className = "feed";
-      grid.innerHTML = projectFeed(cat, "h2");
-    } else {
-      // Nothing filled in yet: placeholder boxes in a mix of shapes, in columns.
-      // Each empty slot opens its project page, which shows where its Instagram post and slides will go.
-      const SHAPES = ["4 / 5", "9 / 16", "3 / 4", "4 / 5", "2 / 3", "1 / 1", "9 / 16", "4 / 5"];
-      const items = projects.length ? projects : SHAPES.map(() => ({}));
-      grid.innerHTML = items
-        .map((p, i) => {
-          const inner = `
-            ${ph(SHAPES[i % SHAPES.length], "Project photo or video")}
-            <p class="caption">Project Title</p>`;
-          return `<div class="project">${projects.length ? `<a href="${projectUrl(cat, p, i)}">${inner}</a>` : inner}</div>`;
-        })
-        .join("");
-    }
-
-    const n = SITE.categories.length;
-    const prev = SITE.categories[(idx - 1 + n) % n];
-    const next = SITE.categories[(idx + 1) % n];
-    $("[data-cat-nav]").innerHTML = `
-      <a href="${catUrl(prev)}">&larr; ${esc(prev.title)}</a>
-      <a href="${catUrl(next)}">${esc(next.title)} &rarr;</a>`;
   }
 
   /* ---------- Project page ---------- */
@@ -832,6 +764,6 @@ const SITE = {
   }
 
   /* ---------- Page titles ---------- */
-  const titles = { home: SITE.name, work: `Work | ${SITE.name}`, press: `Press | ${SITE.name}`, about: `About | ${SITE.name}` };
+  const titles = { home: SITE.name, about: `About | ${SITE.name}` };
   if (titles[page]) document.title = titles[page];
 })();

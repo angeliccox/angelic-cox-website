@@ -48,16 +48,6 @@ h1, h2, h3 { margin: 0; line-height: 1.05; font-family: var(--display); font-wei
 .skip { position: absolute; left: -9999px; top: 0; background: var(--ink); color: var(--paper); padding: 8px 12px; z-index: 100; }
 .skip:focus { left: 8px; top: 8px; }
 
-.eyebrow {
-  display: block;
-  margin: 0 0 10px;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
 /* ---------- Logo ---------- */
 /* Set your logo image in js/site.js (SITE.logo). It fits inside this box, lined up on the left.
    The box is wide because the ANGELIC ★ COX logo is long and thin (about 10 : 1).
@@ -307,71 +297,12 @@ html:has(body[data-page="home"]) { scroll-padding-top: 82px; }
 .home-work > section { padding-top: clamp(24px, 3vw, 48px); }
 .home-work > section + section { margin-top: clamp(48px, 7vw, 110px); }
 
-/* ---------- Page heading ---------- */
-.page-head { padding-top: clamp(40px, 7vw, 88px); padding-bottom: clamp(28px, 4vw, 48px); }
-.page-head h1 {
-  font-size: clamp(44px, 8vw, 104px);
-  text-transform: uppercase;
-}
-.page-head p:not(.eyebrow) { max-width: 60ch; margin: 18px 0 0; }
-
-/* ---------- Work: big centered list of categories ---------- */
-/* 82px = header height (62px logo + 20px padding) */
-.work-index {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: calc(100vh - 82px);
-  min-height: calc(100svh - 82px);
-  padding: 48px var(--gutter);
-}
-.work-bg { position: absolute; inset: 0; overflow: hidden; }
-.work-bg img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity .3s;
-}
-.work-bg img.on { opacity: 1; }
-.work-list {
-  position: relative;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-  font-family: var(--display);
-  font-size: calc(2.9vw + 1rem);
-  line-height: 1.567;
-  letter-spacing: -.03em;
-}
-/* Hover grow: the name takes its category's color and grows a little */
-.work-list a {
-  display: inline-block;
-  color: #262626;
-  text-decoration: none;
-  transition: color .3s ease, transform .3s ease;
-}
-.work-list a:hover, .work-list a:focus-visible { color: var(--c); transform: scale(1.06); }
-/* ---------- Category page ---------- */
-/* The title's size is set by js/site.js so it fills the page width. */
+/* ---------- Homepage role titles ---------- */
+/* Each role's huge title; its size is set by js/site.js so it fills the page width. */
 .cat-title { margin: 16px var(--edge) 72px; line-height: 1.15; white-space: nowrap; }
 .cat-title span { display: inline-block; }
 
-/* Projects keep their own shape, stacked in columns, name underneath */
-.masonry { columns: 4; column-gap: 20px; padding: 10px var(--edge) 0; }
-.project { margin: 0 0 24px; break-inside: avoid; }
-.project img, .project video { display: block; width: 100%; }
-.project img, .project video, .project .ph { border-radius: var(--round); }
-.project a { display: block; color: inherit; text-decoration: none; }
-.project a:hover img { opacity: .85; }
-.caption { margin: 8px 0 0; font-size: 14px; line-height: 1.4; }
-.caption span { color: var(--muted); }
-
-/* Filled-in projects (homepage and category pages), laid out like jamesjunk.co: one after another down the page,
+/* Filled-in projects (homepage), laid out like jamesjunk.co: one after another down the page,
    centered, each with its name and skills above its picture. Each picture keeps its own shape (nothing cropped),
    has rounded corners, and is at most 65% of the page width and 55% of the screen height
    (change 65% and 55vh to make them bigger or smaller). */
@@ -489,16 +420,7 @@ html:has(body[data-page="home"]) { scroll-padding-top: 82px; }
 }
 .feed-item:hover .skills li, .feed-item:focus-visible .skills li { color: var(--c); border-color: var(--c); }
 
-.cat-nav { display: flex; justify-content: space-between; gap: 16px; padding: clamp(48px, 7vw, 88px) var(--edge) 0; }
-.cat-nav a { font-size: 14px; text-decoration: none; }
-.cat-nav a:hover { opacity: .6; }
-
-@media (max-width: 1100px) {
-  .masonry { columns: 3; }
-}
 @media (max-width: 700px) {
-  .masonry { columns: 2; column-gap: 10px; }
-  .project { margin-bottom: 16px; }
   :root { --round: 14px; }
   .feed-media { max-width: 100%; }
   .feed-media:empty, .feed-media.ph { width: 100%; }
@@ -647,40 +569,6 @@ iframe.slides { display: block; border: 1px solid #dbdbdb; }
 .lightbox-view .zoom-stage { flex: 1 1 0; height: auto; min-height: 0; background: var(--paper); }
 .lightbox-nav { position: absolute; top: 50%; left: 0; right: 0; display: flex; justify-content: space-between; padding: 0 calc(var(--edge) + 12px); pointer-events: none; transform: translateY(-50%); }
 .lightbox-nav button { pointer-events: auto; }
-
-/* ---------- Press ---------- */
-.press-list { list-style: none; margin: 0; padding: 0 0 clamp(56px, 8vw, 100px); }
-.press-item {
-  display: grid;
-  grid-template-columns: 220px 1fr auto;
-  gap: clamp(16px, 3vw, 36px);
-  align-items: center;
-  padding: 28px 0;
-  border-top: 1px solid var(--line);
-}
-.press-item:last-child { border-bottom: 1px solid var(--line); }
-.press-item .ph { aspect-ratio: 4 / 3; padding: 12px; }
-.press-item img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-.press-item .ph span { font-size: 13px; }
-.press-outlet { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.press-item h2 { margin: 6px 0; font-size: clamp(20px, 2.6vw, 30px); }
-.press-date { color: var(--muted); font-size: 15px; }
-.read {
-  display: inline-block;
-  padding: 12px 18px;
-  border: 2px solid var(--ink);
-  font-weight: 700;
-  font-size: 13px;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  text-decoration: none;
-  white-space: nowrap;
-}
-.read:hover { background: var(--ink); color: var(--paper); }
-@media (max-width: 720px) {
-  .press-item { grid-template-columns: 1fr; }
-  .press-item .read { justify-self: start; }
-}
 
 /* ---------- About ---------- */
 /* Intro on the left; photo and contact form share the middle-right column */
