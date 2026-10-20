@@ -213,7 +213,7 @@ Something got broken in `js/site.js`, almost always a missing **comma** or **quo
 |---|---|---|
 | Name, city | `js/site.js`, top | `name:`, `city:` |
 | Homepage words ("Hi! I'm a…") | `js/site.js` | `roles:` (each one's `category:` must match a category `slug`) |
-| LinkedIn link | `js/site.js` | `socials:` (replace `"#"` with your profile link). It shows under **Follow** in the footer and as the icon under "Reach out!" |
+| LinkedIn link | `js/site.js` | `socials:` (your profile link). It shows under **Connect** in the footer and as the icon under "Reach out!" |
 | About intro sentence | `about.html` | `Hiii I'm`. It fills in your name, roles and city by itself. To write your own sentence, replace everything between `<h1 class="about-text">` and `</h1>`. |
 | Contact form "Reason for Inquiry" boxes | `about.html` | `Reason for Inquiry`. Change both the `value="…"` and the text after it on each line. |
 

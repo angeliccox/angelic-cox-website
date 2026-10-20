@@ -653,7 +653,7 @@ iframe.slides { display: block; border: 1px solid #dbdbdb; }
 
 /* ---------- Footer ---------- */
 .site-footer { margin-top: clamp(120px, 20vw, 400px); padding: 35px var(--edge) 60px; font-size: 14px; }
-/* Work | About, Contact | Follow | big logo */
+/* Work | About, Contact | Connect | big logo */
 .footer-grid {
   display: grid;
   grid-template-columns: 5fr 5fr 5fr 9fr;

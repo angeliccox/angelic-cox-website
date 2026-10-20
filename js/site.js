@@ -129,7 +129,7 @@ const SITE = {
     ] },
   ],
 
-  // Shown under "Follow" in the footer and as icons on the About page.
+  // Shown under "Connect" in the footer and as icons on the About page.
   // Replace "#" with your profile link.
   socials: [
     { label: "LinkedIn", url: "https://www.linkedin.com/in/angeliccox" },
@@ -397,7 +397,7 @@ const SITE = {
           <a href="about.html#contact">Contact</a>
         </div>
         <div>
-          <p class="footer-head">Follow</p>
+          <p class="footer-head">Connect</p>
           ${SITE.socials.map((s) => `<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a>`).join("")}
         </div>
         <a class="logo footer-logo" href="index.html" aria-label="${esc(SITE.name)}, home">${logo()}</a>

@@ -14,7 +14,7 @@ A plain HTML/CSS/JS site with no build step. Open `index.html` in a browser to p
 | `thanks.html` | Where people land after sending the contact form |
 
 The menu has three outlined pill buttons: Work (with a dropdown of categories), About and Contact.
-The footer has the categories, About/Contact, Follow (LinkedIn) and a big logo.
+The footer has the categories, About/Contact, Connect (LinkedIn) and a big logo.
 
 ## Editing
 **Step-by-step guide for adding your photos, videos and text: [HOW-TO-ADD-PHOTOS.md](HOW-TO-ADD-PHOTOS.md)**
