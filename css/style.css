@@ -350,6 +350,11 @@ html:has(body[data-page="home"]) { scroll-padding-top: 82px; }
 .cross-piece:hover .cross-media img, .cross-piece:hover .cross-media video { transform: scale(1.02); }
 .cross-title { margin: 14px 0 0; font: 400 clamp(15px, 1.25vw, 19px)/1.25 var(--display); letter-spacing: -.01em; transition: color .2s ease; }
 .cross-piece > .skills { justify-content: center; margin-top: 10px; gap: 6px; }
+/* With three skills, the middle one sits exactly under the middle of the picture and the other two hug it,
+   so a short badge on one side doesn't pull the row off center */
+.cross-piece > .skills:has(> li:nth-child(3):last-child) { display: grid; grid-template-columns: 1fr auto 1fr; }
+.cross-piece > .skills:has(> li:nth-child(3):last-child) > li:first-child { justify-self: end; }
+.cross-piece > .skills:has(> li:nth-child(3):last-child) > li:last-child { justify-self: start; }
 .cross-piece > .skills li { padding: 4px 10px; font-size: 11px; }
 .cross-piece:hover .cross-title, .cross-piece:focus-visible .cross-title { color: var(--c); }
 .cross-piece:hover .skills li, .cross-piece:focus-visible .skills li { color: var(--c); border-color: var(--c); }
