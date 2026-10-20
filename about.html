@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About | Angelic Cox</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="about">
+  <header id="site-header"></header>
+
+  <main id="main">
+    <section class="about-top">
+      <div class="about-intro">
+        <!-- Your intro. Your city fills in from js/site.js.
+             To change the words, edit everything between <h1 ...> and </h1>. -->
+        <h1 class="about-text">Hi! I'm a UC Berkeley graduate in Cognitive Science and Art Practice, interested in digital marketing and data analytics. I like learning how people think, making work that catches attention with clear visuals, and checking the numbers to see what works. Based in <span data-city></span>.</h1>
+        <!-- "REACH OUT!" IMAGE: your handwriting, trimmed close around the letters -->
+        <img class="reach-out" src="images/reach-out.png" alt="Reach out!">
+        <ul class="socials" data-socials></ul>
+      </div>
+
+      <!-- ABOUT PHOTO: shown whole, in its own shape, in black & white -->
+      <img class="about-photo" src="images/about-photo.png" alt="Angelic Cox">
+
+    </section>
+
+    <section class="contact" id="contact">
+      <!-- On Netlify, turn on Forms (Site configuration → Forms → Enable form detection)
+           and re-upload. Messages then show in Netlify and can be emailed to you.
+           After sending, people land on thanks.html. -->
+      <form class="contact-form" name="contact" method="POST" action="thanks.html" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p hidden><label>Leave this empty: <input name="bot-field"></label></p>
+
+        <fieldset class="field">
+          <legend>Name</legend>
+          <div class="field-row">
+            <label>
+              <span class="sub-label">First Name <span class="req">(required)</span></span>
+              <input type="text" name="first-name" autocomplete="given-name" required>
+            </label>
+            <label>
+              <span class="sub-label">Last Name <span class="req">(required)</span></span>
+              <input type="text" name="last-name" autocomplete="family-name" required>
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="field-label" for="email">Email <span class="req">(required)</span></label>
+          <input id="email" type="email" name="email" autocomplete="email" required>
+          <label class="check"><input type="checkbox" name="follow-job-hunt" value="yes"> Sign up to follow me during the job hunt</label>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="subject">Subject <span class="req">(required)</span></label>
+          <input id="subject" type="text" name="subject" required>
+        </div>
+
+        <fieldset class="field checks">
+          <legend>Reason for Inquiry</legend>
+          <!-- Rename these to the kinds of work people can contact you about. Change both the value and the text. -->
+          <label class="check"><input type="checkbox" name="reason[]" value="Digital Marketing"> Digital Marketing</label>
+          <label class="check"><input type="checkbox" name="reason[]" value="Data Analysis"> Data Analysis</label>
+          <label class="check"><input type="checkbox" name="reason[]" value="Social Media Design"> Social Media Design</label>
+          <label class="check"><input type="checkbox" name="reason[]" value="Digital Art"> Digital Art</label>
+          <label class="check"><input type="checkbox" name="reason[]" value="Other"> Other</label>
+        </fieldset>
+
+        <div class="field">
+          <label class="field-label" for="message">Please tell me a little bit about why you're reaching out! <span class="req">(required)</span></label>
+          <textarea id="message" name="message" required></textarea>
+        </div>
+
+        <button class="submit" type="submit">Submit</button>
+      </form>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

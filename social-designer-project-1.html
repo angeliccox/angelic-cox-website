@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>EMPIRE | Angelic Cox</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- PROJECT SHOWCASE PAGE (laid out like jamesjunk.co/impact)
+     The project's name and a short intro, centered, then the designs, which open full screen when tapped.
+     Edit the words and swap pictures right here in this file.
+     The menu, footer and fonts come from the rest of the site automatically.
+
+     data-category below is the category this project belongs to. It sets where the "← go back" links lead.
+
+     To make another one: copy this file, rename the copy (e.g. social-designer-project-2.html),
+     then type that name after page: for the project's line in js/site.js. -->
+<body data-page="write-up" data-category="social-designer">
+  <header id="site-header"></header>
+
+  <main id="main" class="write-up showcase">
+    <a class="back-link" href="work.html" data-back>&larr; go back</a>
+
+    <!-- NAME: centered, with the intro centered under it -->
+    <div class="showcase-head">
+      <h1>EMPIRE</h1>
+    </div>
+
+    <!-- INTRO: a few sentences in big type. Copy a <p> … </p> line for another paragraph. -->
+    <div class="showcase-intro">
+      <p>Mock social media designs for EMPIRE, designed in Figma.</p>
+      <p>EMPIRE is an independent record label from San Francisco. It started in 2010, distributing hip-hop and rap. It also sells clothing and merch.</p>    </div>
+
+    <!-- DESIGNS: two along the top and one centered below them. Tapping one opens it full screen,
+         where people can zoom in and flip through the others with the arrows.
+         Each <a> … </a> block is one: href is the picture that opens, data-title its name in the viewer,
+         and the name under the picture goes between <span class="tap-caption"> and </span>.
+         To add one, copy a whole <a> … </a> block and change the picture's file name (it keeps the same pattern). -->
+    <div class="tap-grid" data-lightbox>
+      <a class="tap-piece" href="images/empire-carousel.jpg" data-title="Carousel">
+        <img src="images/empire-carousel.jpg" alt="Three Instagram carousel slides for EMPIRE: Shaboozy is an outlaw, a list of featured artists, and the record The Outlaw Cherie Lee and Other Western Tales" loading="lazy">
+        <span class="tap-caption">Carousel</span>
+      </a>
+      <a class="tap-piece" href="images/empire-stories.jpg" data-title="Instagram stories">
+        <img src="images/empire-stories.jpg" alt="Two Instagram stories and a feed post for EMPIRE: a shop empi.re merch story, a quote post from a verified artist, and a Tap In story sharing a post" loading="lazy">
+        <span class="tap-caption">Instagram stories</span>
+      </a>
+      <a class="tap-piece" href="images/empire-process.jpg" data-title="Iterative process">
+        <img src="images/empire-process.jpg" alt="Three versions of the same EMPIRE hoodie post: on white, on black with a white glow, and on black with a warm glow" loading="lazy">
+        <span class="tap-caption">Iterative process</span>
+      </a>
+    </div>
+
+    <a class="back-link write-up-end" href="work.html" data-back>&larr; go back</a>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

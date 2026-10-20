@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ONGB: Student Absenteeism in Oakland Unified School District | Angelic Cox</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- PROJECT WRITE-UP PAGE
+     One project, told start to finish: a title, a slideshow of pictures, then sections of writing and pictures.
+     Edit the words and swap pictures right here in this file.
+     The menu, footer and fonts come from the rest of the site automatically.
+
+     data-category below is the category this project belongs to. It sets where the "← go back" links lead.
+
+     To make another write-up: copy this file, rename the copy (e.g. data-analyst-project-2.html),
+     then type that name after page: for the project's line in js/site.js. -->
+<body data-page="write-up" data-category="data-analyst">
+  <header id="site-header"></header>
+
+  <main id="main" class="write-up">
+    <a class="back-link" href="work.html" data-back>&larr; go back</a>
+
+    <!-- TITLE: the project's name, then a short line under it, then a note about the project -->
+    <div class="write-up-head">
+      <h1>ONGB: Student Absenteeism in Oakland Unified School District</h1>
+      <p class="write-up-meta"><span data-name>Angelic Cox</span> &middot; Data Science Discovery Intern &middot; Research poster &middot; 2024&ndash;2025</p>
+      <p class="write-up-note">Our team built machine learning models that predict which students in Oakland Unified School District are at risk of chronic absenteeism. We presented the work as a research poster at UC Berkeley's Data Discovery Symposium.</p>
+    </div>
+
+    <!-- SLIDESHOW: the poster, then close-ups of its sections; people flip through them with the arrow buttons.
+         Each <figure class="slide"> … </figure> block is one slide. Write each caption between <figcaption> and </figcaption>.
+         To add a slide, copy a whole block and change the picture's file name. -->
+    <div class="carousel" data-carousel>
+      <figure class="slide">
+        <img src="images/ongb-poster.jpg" alt="The full research poster: ONGB: Student Absenteeism in Oakland Unified School District">
+        <figcaption>Our research poster for UC Berkeley's Data Discovery Symposium.</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="images/ongb-poster-charts.jpg" alt="Poster section: Data and Visualization, with charts of chronic absenteeism by age, attendance over time, GPA vs. attendance, and a heatmap by grade and ethnicity">
+        <figcaption>Our charts: absenteeism by age, attendance over time, GPA vs. attendance, and cases by grade and ethnicity.</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="images/ongb-poster-models.jpg" alt="Poster section: the XGBoost model's method and results, with three charts showing how well each model performed">
+        <figcaption>Our XGBoost model, and how well each of the three models did.</figcaption>
+      </figure>
+      <figure class="slide">
+        <img src="images/ongb-poster-next.jpg" alt="Poster section: Discussion and Conclusion, with key impacts and future directions">
+        <figcaption>What schools can do with our findings, and where the research goes next.</figcaption>
+      </figure>
+    </div>
+
+    <section class="write-up-section">
+      <h2>About the project</h2>
+      <p>Chronic absenteeism means missing a large share of the school year. It was rising for years before COVID-19. After the pandemic, the rate nearly doubled. In Oakland Unified School District, marginalized communities are hit hardest.</p>
+      <p>Our team set out to answer one question: which facts about a student best predict that they will be chronically absent? We trained machine learning models on seven years of student data, from 2017 to 2023, and used them to predict who was at risk in 2024&ndash;2025.</p>
+      <p>I joined the team as a Data Science Discovery intern, working remotely from August 2024 to May 2025.</p>
+
+      <!-- BIG NUMBERS: change each number and the label under it. Delete a whole <div> … </div> to have fewer. -->
+      <div class="write-up-stats">
+        <div><strong>7</strong><span>years of student data</span></div>
+        <div><strong>3</strong><span>prediction models built</span></div>
+        <div><strong>~80%</strong><span>prediction accuracy</span></div>
+      </div>
+    </section>
+
+    <section class="write-up-section">
+      <h2>What we set out to learn</h2>
+      <ul>
+        <li>Which facts about a student best predict chronic absenteeism</li>
+        <li>Whether a model can flag at-risk students for the next school year</li>
+        <li>How attendance changed before, during and after COVID-19</li>
+        <li>Where schools can step in</li>
+      </ul>
+
+      <!-- WORDS TO KNOW: each <div> … </div> line is one word and what it means -->
+      <p>A few words used on this page:</p>
+      <dl class="write-up-terms">
+        <div><dt>Chronic absenteeism</dt><dd>Missing a large share of the school year, for any reason. In California, that means missing 10% or more of school days.</dd></div>
+        <div><dt>Machine learning</dt><dd>Teaching a computer to find patterns in past data, so it can make predictions about new data.</dd></div>
+        <div><dt>Model</dt><dd>What the computer learns from the data. Give it facts about a student, and it predicts an outcome.</dd></div>
+        <div><dt>Random Forest</dt><dd>A model made of many simple decision trees. Each tree makes a guess, and the most common answer wins.</dd></div>
+        <div><dt>XGBoost</dt><dd>A model that builds decision trees one after another. Each tree fixes the mistakes of the last.</dd></div>
+        <div><dt>Predictor</dt><dd>A fact that helps a model make its guess, like GPA or past attendance. Also called a "feature."</dd></div>
+        <div><dt>Accuracy</dt><dd>Of all the model's predictions, the share that were right.</dd></div>
+        <div><dt>Precision</dt><dd>Of the students the model flagged as at risk, the share who really were chronically absent.</dd></div>
+        <div><dt>Recall</dt><dd>Of the students who really were chronically absent, the share the model caught.</dd></div>
+        <div><dt>Jupyter Notebook</dt><dd>A tool for writing and running code step by step, with notes and charts in between.</dd></div>
+      </dl>
+    </section>
+
+    <section class="write-up-section">
+      <h2>What I did</h2>
+      <p>We tested several kinds of models. Two handled the data best: Random Forest and XGBoost. We built three models in all: two Random Forest models and one XGBoost model. The Random Forest models were split by grade, because students below grade 6 don't have GPAs yet.</p>
+      <p>My part:</p>
+      <ul>
+        <li>Built the Random Forest and XGBoost models with the team in Jupyter Notebook</li>
+        <li>Designed the layout of the final research poster</li>
+        <li>Wrote the abstract, turning technical findings into takeaways anyone at the symposium could follow</li>
+        <li>Presented the research at UC Berkeley's Data Discovery Symposium</li>
+      </ul>
+
+      <figure>
+        <img src="images/ongb-poster-abstract.jpg" alt="Poster section: the abstract, describing the question, the method and the results">
+        <figcaption>The abstract I wrote: our question, our method and what we found.</figcaption>
+      </figure>
+    </section>
+
+    <section class="write-up-section">
+      <h2>What we found</h2>
+      <p>The short version: a student's attendance last year is the best sign of whether they will be chronically absent this year.</p>
+      <ul>
+        <li>Our best models predicted chronic absenteeism with about 80% accuracy. When the XGBoost model flagged a student as at risk, it was right 84% of the time</li>
+        <li>The three strongest predictors were past attendance, GPA and number of suspensions</li>
+        <li>For 2024&ndash;2025, two groups stood out as most at risk: students with borderline attendance (90% to 92%), and older students with a GPA below 2.0</li>
+        <li>Higher GPAs went with better attendance</li>
+        <li>Attendance dropped across Bay Area schools during the pandemic</li>
+        <li>Latino and African American students had the highest rates of chronic absenteeism, especially in the upper grades. That gap points to systemic inequities that schools need to address</li>
+      </ul>
+
+      <figure class="narrow">
+        <img src="images/ongb-poster-heatmap.jpg" alt="Heatmap of chronic absenteeism cases by grade level and ethnicity, with the most cases among Latino and African American students in grades 6 to 12">
+        <figcaption>The redder the square, the more cases. Most were among Latino and African American students, especially in middle and high school.</figcaption>
+      </figure>
+    </section>
+
+    <section class="write-up-section">
+      <h2>What this means for schools</h2>
+      <p>Schools already collect the data that predicts chronic absenteeism. Our findings show where to use it:</p>
+      <ul>
+        <li>Use the models to flag students with low attendance, low GPAs and many suspensions, and reach out before they fall behind</li>
+        <li>Use the GPA levels where absenteeism rises sharply as benchmarks for academic support</li>
+        <li>Focus extra support on the early grades and on transition years, like the move to middle or high school</li>
+        <li>Support the whole student: schoolwork, and social and emotional needs too</li>
+      </ul>
+    </section>
+
+    <section class="write-up-section">
+      <h2>The result</h2>
+
+      <div class="write-up-stats">
+        <div><strong>~80%</strong><span>prediction accuracy</span></div>
+        <div><strong>84%</strong><span>of students flagged as at risk really were</span></div>
+        <div><strong>3</strong><span>strongest predictors: past attendance, GPA and suspensions</span></div>
+      </div>
+
+      <p>We presented the poster at UC Berkeley's Data Discovery Symposium. Our message was simple: schools already have the data to spot at-risk students early. Past attendance, GPA and suspensions are the place to start.</p>
+    </section>
+
+    <section class="write-up-section">
+      <h2>What comes next</h2>
+      <p>The models can get better. The next steps are to refine them with more advanced techniques, add information the records don't capture yet, like family background and student engagement, and keep checking the predictions as new data comes in.</p>
+    </section>
+
+    <section class="write-up-section">
+      <h2>The full poster</h2>
+      <p>Every chart and detail is on the poster. Zoom in to read it.</p>
+
+      <!-- ZOOMABLE POSTER: people can zoom in and drag around to read it.
+           To use another picture, put it in the files folder and type its name between the quotes in data-zoom="". -->
+      <div data-zoom="files/ongb-poster.png" data-alt="The full research poster: ONGB: Student Absenteeism in Oakland Unified School District"></div>
+      <p><a class="slides-link" href="files/ongb-poster.png" target="_blank" rel="noopener">Open the full poster &#8599;</a></p>
+    </section>
+
+    <a class="back-link write-up-end" href="work.html" data-back>&larr; go back</a>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

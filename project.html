@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project | Angelic Cox</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<!-- One page serves every project: project.html?c=<category slug>&p=<project>.
+     Each project's name, year, Instagram post and slides are set in js/site.js. -->
+<body data-page="project">
+  <header id="site-header"></header>
+
+  <main id="main" class="project-page">
+    <a class="back-link" href="work.html" data-back>&larr; go back</a>
+    <div class="project-head">
+      <h1 data-project-title>Project</h1>
+      <p data-project-detail></p>
+      <p class="project-about" data-project-about></p>
+      <a class="project-link" data-project-link target="_blank" rel="noopener" hidden></a>
+    </div>
+    <div class="project-media" data-project-media></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

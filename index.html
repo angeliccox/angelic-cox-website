@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Angelic Cox</title>
+  <meta name="description" content="Angelic Cox: portfolio, press and contact.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+  <!-- The menu stays at the top of the screen as you scroll down the homepage. -->
+  <header id="site-header"></header>
+
+  <!-- The first screen: your hero design fills it and the words float on top.
+       Keep scrolling and your projects follow (see PROJECTS below). -->
+  <div class="home-hero" id="top">
+    <main id="main" class="stage">
+      <!-- HERO PHOTO: images/hero.jpg (2560 × 1440). On big screens it's the full-screen background
+           (set in css/style.css); this copy shows under the words on phones. -->
+      <img class="stage-photo" src="images/hero.jpg" alt="Angelic Cox">
+      <!-- "HI! I'M A…" IMAGE: your handwriting, trimmed close around the letters -->
+      <img class="stage-hi" src="images/hi-im-a.png" alt="Hi, I'm a…">
+
+      <!-- ROLES: keep this line. The site fills in your roles and stars here (edit them in js/site.js).
+           Clicking a role (or its star) scrolls down this page to that role's projects. -->
+      <ul class="roles" data-roles></ul>
+
+      <!-- "BASED IN SAN FRANCISCO BAY AREA" IMAGE: your handwriting, on the right.
+           class="stage-based" is what puts it there (class="stage-hi" would put it on top of "Hi, I'm a…"). -->
+      <img class="stage-based" src="images/base-in.png" alt="Based in San Francisco Bay Area">
+    </main>
+  </div>
+
+  <!-- PROJECTS: keep this line. Under the first screen, each role gets a big title in its color,
+       then its projects as cards. They fill in from the projects in js/site.js, in the order of your roles.
+       A role with no projects yet shows placeholder cards until you add some.
+       id="work" marks the top of your projects (a role without a category leads here). -->
+  <div class="home-work" id="work" data-home-work></div>
+
+  <footer id="site-footer"></footer>
+  <script src="js/site.js"></script>
+</body>
+</html>
