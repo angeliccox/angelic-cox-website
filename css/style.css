@@ -549,7 +549,8 @@ iframe.slides { display: block; border: 1px solid #dbdbdb; }
 .showcase-head { margin-top: 24px; text-align: center; }
 .showcase-head h1 { font-size: clamp(52px, 7vw, 110px); line-height: .95; }
 .showcase-intro { max-width: 1040px; margin: clamp(40px, 5vw, 72px) auto 0; text-align: center; }
-.showcase-intro p { margin: 0 0 .8em; font: 400 clamp(20px, 1.8vw, 28px)/1.35 var(--display); letter-spacing: -.01em; }/* The designs, staggered: in each group of three, the 1st on the top left, the 2nd on the top right,
+.showcase-intro p { margin: 0 0 .8em; font: 400 clamp(20px, 1.8vw, 28px)/1.35 var(--display); letter-spacing: -.01em; }
+/* The designs, staggered: in each group of three, the 1st on the top left, the 2nd on the top right,
    the 3rd centered below them. Each is 36% of the page wide (9 of 25 columns); tapping one opens it full screen. */
 .tap-grid { display: grid; grid-template-columns: repeat(25, minmax(0, 1fr)); row-gap: clamp(28px, 3.4vw, 52px); margin-top: clamp(56px, 7vw, 104px); }
 .tap-piece:nth-child(3n + 1) { grid-column: 2 / span 9; }
@@ -560,9 +561,13 @@ iframe.slides { display: block; border: 1px solid #dbdbdb; }
 .tap-piece:hover img, .tap-piece:focus-visible img { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(0, 0, 0, .18); }
 .tap-caption { display: block; margin-top: 12px; font: 400 clamp(16px, 1.4vw, 20px)/1.25 var(--display); letter-spacing: -.01em; transition: color .2s ease; }
 .tap-piece:hover .tap-caption, .tap-piece:focus-visible .tap-caption { color: var(--c); }
+/* tap-pairs: the designs two by two instead, each 44% of the page wide (11 of 25 columns), e.g. the IXL page */
+.tap-pairs .tap-piece:nth-child(odd) { grid-column: 2 / span 11; }
+.tap-pairs .tap-piece:nth-child(even) { grid-column: 14 / span 11; }
+.tap-pairs .tap-caption { text-align: center; }
 @media (max-width: 760px) {
   .tap-grid { grid-template-columns: minmax(0, 1fr); }
-  .tap-piece:nth-child(n) { grid-column: 1; }
+  .tap-piece:nth-child(n), .tap-pairs .tap-piece:nth-child(n) { grid-column: 1; }
 }
 
 /* Full-screen viewer for pictures people tap into (data-lightbox in the page, set up in js/site.js):
